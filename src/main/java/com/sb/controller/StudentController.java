@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,6 +68,17 @@ public class StudentController {
 		System.out.println(studentId);
 		//hibernate code to store into database
 		return studentId;
+	}
+	
+	@PostMapping(path = "/checkVersion")
+	public Integer checkVersion(@RequestParam(name="studentId")Integer studentID,
+			      @RequestHeader(name = "version" , required = false) String version) {
+		if(version.equals("2")) {
+			return 123456;
+		}else {
+			return studentID;
+		}
+		
 	}
 }
  

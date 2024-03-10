@@ -71,14 +71,17 @@ public class StudentController {
 	}
 	
 	@PostMapping(path = "/checkVersion")
-	public Integer checkVersion(@RequestParam(name="studentId")Integer studentID,
+	public Integer checkVersion(@RequestParam(name="studentId")Integer studentId,
 			      @RequestHeader(name = "version" , required = false) String version) {
+		System.out.println(studentId);
+		if(version !=null) {
 		if(version.equals("2")) {
 			return 123456;
 		}else {
-			return studentID;
+			return studentId;
 		}
-		
+	  }
+		return 11;
 	}
 }
  
